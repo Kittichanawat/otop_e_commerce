@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pagination Example</title>
+    <link rel="stylesheet" href="https://pagination.js.org/dist/2.1.5/pagination.css"/>
+</head>
+<body>
+    <div id="data-container"></div>
+<div id="pagination-container"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://pagination.js.org/dist/2.1.5/pagination.min.js"></script>
+
+<script>
+// ตัวอย่างข้อมูล
+var data = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6', 'Item 7', 'Item 8', 'Item 9', 'Item 10','Item 11','Item 12'];
+
+// ฟังก์ชันที่จะใช้ในการแสดงข้อมูล
+function template(data) {
+    var html = '<ul>';
+    $.each(data, function(index, item){
+        html += '<li>' + item + '</li>';
+    });
+    html += '</ul>';
+    return html;
+}
+
+// การกำหนดค่าใช้งาน pagination
+$('#pagination-container').pagination({
+    dataSource: data,
+    callback: function(data, pagination) {
+        var html = template(data);
+        $('#pagination-container').prev().html(html);
+    }
+});
+</script>
+</body>
+</html>
